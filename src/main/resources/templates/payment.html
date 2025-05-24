@@ -1,0 +1,72 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <title>Stripe Payment</title>-->
+<!--    <script src="https://js.stripe.com/v3/"></script>-->
+<!--</head>-->
+<!--<body>-->
+
+<!--<h2>Stripe Payment</h2>-->
+
+<!--&lt;!&ndash; Payment Form &ndash;&gt;-->
+<!--<form id="payment-form">-->
+<!--    <div id="card-element">-->
+<!--        &lt;!&ndash; A Stripe Element will be inserted here. &ndash;&gt;-->
+<!--    </div>-->
+<!--    <button id="submit">Pay</button>-->
+<!--    <div id="error-message"></div>-->
+<!--</form>-->
+
+<!--<script>-->
+<!--    // Initialize Stripe with your public key-->
+<!--    var stripe = Stripe('pk_test_51NGQWUSJed6yuGifTjeFHW3yQ3W7sVGVbAmxTer7Q7rwXmtjThpVsdFL0vQ7Hh4OptALBmh5unhu2A8TPkApB5OO00eOJgZmCc'); // Replace with your actual publishable key-->
+<!--    var elements = stripe.elements();-->
+
+<!--    // Create an instance of the card element-->
+<!--    var card = elements.create('card');-->
+<!--    card.mount('#card-element');  // Mounts the card element to the DOM-->
+
+<!--    // Handle the form submission-->
+<!--    var form = document.getElementById('payment-form');-->
+<!--    form.addEventListener('submit', function(event) {-->
+<!--        event.preventDefault();  // Prevent the default form submission-->
+
+<!--        // Create a Stripe token from the card details-->
+<!--        stripe.createToken(card).then(function(result) {-->
+<!--            if (result.error) {-->
+<!--                // Display error message to the user-->
+<!--                document.getElementById('error-message').innerText = result.error.message;-->
+<!--            } else {-->
+<!--                // If no error, send the token to your backend to process the payment-->
+<!--                fetch('/payment/charge', {-->
+<!--                    method: 'POST',-->
+<!--                    headers: {-->
+<!--                        'Content-Type': 'application/json',-->
+<!--                    },-->
+<!--                    body: JSON.stringify({-->
+<!--                        amount: 1000,  // Example amount in cents ($10.00)-->
+<!--                        currency: 'usd',-->
+<!--                        description: 'Example payment',-->
+<!--                        receiptEmail: 'customer@example.com',-->
+<!--                        token: result.token.id  // Send the generated token to backend-->
+<!--                    })-->
+<!--                })-->
+<!--                .then(response => response.json())  // Parse the response as JSON-->
+<!--                .then(data => {-->
+<!--                    if (data.status === 'success') {-->
+<!--                        alert('Payment successful!');-->
+<!--                    } else {-->
+<!--                        alert('Payment failed. Please try again.');-->
+<!--                    }-->
+<!--                })-->
+<!--                .catch(error => {-->
+<!--                    console.error('Error:', error);  // Log any network or server-side errors-->
+<!--                    alert('There was an error with the payment. Please try again later.');-->
+<!--                });-->
+<!--            }-->
+<!--        });-->
+<!--    });-->
+<!--</script>-->
+
+<!--</body>-->
+<!--</html>-->
