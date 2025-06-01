@@ -6,15 +6,24 @@ This project demonstrates how to integrate **Stripe Checkout** in a Spring Boot 
 
 ## 📦 Package Structure
 
+
 text
+
 com.payment.stripe_payment
+
 ├── controller
+
 │   └── ProductCheckoutController.java
+
 ├── dto
 │   ├── ProductRequest.java
 │   └── StripeResponse.java
+
 ├── service
 │   └── StripeService.java
+
+
+
 🚀 API Endpoint
 POST /product/v1/checkout
 Creates a Stripe Checkout session for a product.
